@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <style media="screen">
+        body {
+            background: #ddd;
+        }
+
+        canvas {
+            border: 1px solid #d0d0d0;
+            width: 600px;
+            height:300px
+        }
+        /**
+         * canvas 拥有两套width与height : 元素宽高、绘画面宽高
+         * 通过样式设置的宽高是设置元素的宽高，在canvas元素上设置属性width/height是设置绘画面的宽高
+         * canvas默认绘画面宽高 : 300*150
+         * 在元素宽高与绘画面宽高不符时会拉伸绘画面大小
+         */
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="150">
+    fallback content
+  </canvas>
+    <script type="text/javascript">
+        const canvas = document.querySelector("#canvas"),
+            context = canvas.getContext("2d");
+
+        context.fillText("Hello Canvas!",canvas.width/2-50,canvas.height/2-20);
+        context.strokeText("Hello Canvas!",canvas.width/2-50,canvas.height/2 + 20);
+        canvas.toBlob(function(res){
+          console.log(res);
+        },"png",1.0);
+    </script>
+</body>
+
+</html>
